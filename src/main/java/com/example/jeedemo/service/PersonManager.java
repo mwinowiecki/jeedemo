@@ -6,9 +6,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import com.example.jeedemo.domain.Car;
 import com.example.jeedemo.domain.Person;
+import com.example.jeedemo.domain.Sandwich;
 
 @Stateless
 public class PersonManager {
@@ -31,11 +30,11 @@ public class PersonManager {
 		return em.createNamedQuery("person.all").getResultList();
 	}
 
-	public List<Car> getOwnedCars(Person person) {
+	public List<Sandwich> getBoughtSandwiches(Person person) {
 		person = em.find(Person.class, person.getId());
 		// lazy loading here - try this code without this (shallow) copying
-		List<Car> cars = new ArrayList<Car>(person.getCars());
-		return cars;
+		List<Sandwich> sandwiches = new ArrayList<Sandwich>(person.getSandwiches());
+		return sandwiches;
 	}
 
 }

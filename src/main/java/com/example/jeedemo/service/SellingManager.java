@@ -6,8 +6,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.example.jeedemo.domain.Car;
 import com.example.jeedemo.domain.Person;
+import com.example.jeedemo.domain.Sandwich;
 
 
 /* 
@@ -20,36 +20,36 @@ public class SellingManager {
 	@PersistenceContext
 	EntityManager em;
 
-	public void sellCar(Long personId, Long carId) {
+	public void sellSandwich(Long personId, Long sandwichId) {
 
 		Person person = em.find(Person.class, personId);
-		Car car = em.find(Car.class, carId);
-		car.setSold(true);
+		Sandwich sandwich = em.find(Sandwich.class, sandwichId);
+		sandwich.setSold(true);
 
-		person.getCars().add(car);
+		person.getSandwiches().add(sandwich);
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Car> getAvailableCars() {
-		return em.createNamedQuery("car.unsold").getResultList();
+	public List<Sandwich> getAvailableSandwiches() {
+		return em.createNamedQuery("sandwich.unsold").getResultList();
 	}
 
-	public void disposeCar(Person person, Car car) {
+	public void disposeSandwich(Person person, Sandwich sandwich) {
 
 		person = em.find(Person.class, person.getId());
-		car = em.find(Car.class, car.getId());
+		sandwich = em.find(Sandwich.class, sandwich.getId());
 
-		Car toRemove = null;
+		Sandwich toRemove = null;
 		// lazy loading here (person.getCars)
-		for (Car aCar : person.getCars())
-			if (aCar.getId().compareTo(car.getId()) == 0) {
-				toRemove = aCar;
+		for (Sandwich aSandwich : person.getSandwiches())
+			if (aSandwich.getId().compareTo(sandwich.getId()) == 0) {
+				toRemove = aSandwich;
 				break;
 			}
 
 		if (toRemove != null)
-			person.getCars().remove(toRemove);
+			person.getSandwiches().remove(toRemove);
 		
-		car.setSold(false);
+		sandwich.setSold(false);
 	}
 }

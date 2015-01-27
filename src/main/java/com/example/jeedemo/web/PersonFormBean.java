@@ -7,8 +7,8 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.example.jeedemo.domain.Car;
 import com.example.jeedemo.domain.Person;
+import com.example.jeedemo.domain.Sandwich;
 import com.example.jeedemo.service.PersonManager;
 import com.example.jeedemo.service.SellingManager;
 
@@ -22,7 +22,7 @@ public class PersonFormBean implements Serializable {
 	private ListDataModel<Person> persons = new ListDataModel<Person>();
 	
 	private Person personToShow = new Person();
-	private ListDataModel<Car> ownedCars = new ListDataModel<Car>();
+	private ListDataModel<Sandwich> boughtSandwiches = new ListDataModel<Sandwich>();
 
 
 	@Inject
@@ -43,9 +43,9 @@ public class PersonFormBean implements Serializable {
 		return persons;
 	}
 
-	public ListDataModel<Car> getOwnedCars() {
-		ownedCars.setWrappedData(pm.getOwnedCars(personToShow));
-		return ownedCars;
+	public ListDataModel<Sandwich> getBoughtSandwiches() {
+		boughtSandwiches.setWrappedData(pm.getBoughtSandwiches(personToShow));
+		return boughtSandwiches;
 	}
 	
 	// Actions
@@ -66,9 +66,9 @@ public class PersonFormBean implements Serializable {
 		return "details";
 	}
 	
-	public String disposeCar(){
-		Car carToDispose = ownedCars.getRowData();
-		sm.disposeCar(personToShow, carToDispose);
+	public String disposeSandwich(){
+		Sandwich carToDispose = boughtSandwiches.getRowData();
+		sm.disposeSandwich(personToShow, carToDispose);
 		return null;
 	}
 }

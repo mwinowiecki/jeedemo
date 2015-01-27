@@ -25,11 +25,11 @@ public class Person {
 
 	private Long id;
 
-	private String firstName = "unknown";
-	private String pin = "";
-	private Date registrationDate = new Date();
+	private String firstName = "";
+	private String lastName="";	
+	private Date birthDate = new Date();
 
-	private List<Car> cars = new ArrayList<Car>();
+	private List<Sandwich> sandwiches = new ArrayList<Sandwich>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -48,28 +48,28 @@ public class Person {
 		this.firstName = firstName;
 	}
 
-	@Size(min = 2)
-	public String getPin() {
-		return pin;
-	}
-	public void setPin(String pin) {
-		this.pin = pin;
-	}
-
 	@Temporal(TemporalType.DATE)
-	public Date getRegistrationDate() {
-		return registrationDate;
+	public Date getBirthDate() {
+		return birthDate;
 	}
-	public void setRegistrationDate(Date registrationDate) {
-		this.registrationDate = registrationDate;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	// Be careful here, both with lazy and eager fetch type
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	public List<Car> getCars() {
-		return cars;
+	public List<Sandwich> getSandwiches() {
+		return sandwiches;
 	}
-	public void setCars(List<Car> cars) {
-		this.cars = cars;
+	public void setSandwiches(List<Sandwich> sandwiches) {
+		this.sandwiches = sandwiches;
 	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	
 }

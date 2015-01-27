@@ -23,4 +23,13 @@ public void assignSandwich(Long sandwichId, Long makerId){
 public List<Sandwich> getAvailableSandwiches(){
 	return em.createNamedQuery("sandwich.unsold").getResultList();
 }
+
+//public List<Maker> getAvailableMakers(){
+//	return em.createNamedQuery("maker.available").getResultList();
+//}
+
+@SuppressWarnings("unchecked")
+public List<Maker> getAllMakers(){
+	return em.createNamedQuery("maker.all").getResultList();
+}
 }

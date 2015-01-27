@@ -2,18 +2,24 @@ package com.example.jeedemo.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@NamedQuery(name = "sandwich.all", query = "Select s from Sandwich s")
+@NamedQueries({
+@NamedQuery(name = "sandwich.all", query = "Select s from Sandwich s"),
+@NamedQuery(name = "sandwich.unsold", query = "Select s from Sandwich s where s.sold=false")
+})
 
 public class Sandwich {
 	@Id
@@ -22,8 +28,9 @@ public class Sandwich {
 	
 	private String name;
 	
-	private boolean sold = false;
 	private float price = 0;
+	private boolean sold = false;
+	private int amount = 0;
 	
 	private ArrayList<String> ingredients;
 	
@@ -37,53 +44,62 @@ public class Sandwich {
 	
 	
 	
-	public Long getId() {
+	public Long getId() {//
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Long id) {//
 		this.id = id;
 	}
-	public String getName() {
+	public String getName() {//
 		return name;
 	}
-	public void setName(String name) {
+	public void setName(String name) {//
 		this.name = name;
 	}
-	public Date getDateOfMake() {
+	public Date getDateOfMake() {//
 		return dateOfMake;
 	}
-	public void setDateOfMake(Date dateOfMake) {
+	public void setDateOfMake(Date dateOfMake) {//
 		this.dateOfMake = dateOfMake;
 	}
-	public float getPrice() {
+	public float getPrice() {//
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(float price) {//
 		this.price = price;
 	}
 
-	public ArrayList<String> getIngredients() {
+	public ArrayList<String> getIngredients() {//
 		return ingredients;
 	}
-	public void setIngredients(ArrayList<String> ingredients) {
+	public void setIngredients(ArrayList<String> ingredients) {//
 		this.ingredients = ingredients;
 	}
-	public boolean isSold() {
+	public boolean isSold() {//
 		return sold;
 	}
-	public void setSold(boolean sold) {
+	public void setSold(boolean sold) {//
 		this.sold = sold;
 	}
-	public boolean isEditable() {
+	public boolean isEditable() {//
 		return editable;
 	}
-	public void setEditable(boolean editable) {
+	public void setEditable(boolean editable) {//
 		this.editable = editable;
 	}
-	public Maker getMaker() {
+	
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	public Maker getMaker() {//
 		return maker;
 	}
-	public void setMaker(Maker maker) {
+	public void setMaker(Maker maker) {//
 		this.maker = maker;
 	}
 

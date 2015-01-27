@@ -24,7 +24,7 @@ public class SellingManager {
 
 		Person person = em.find(Person.class, personId);
 		Sandwich sandwich = em.find(Sandwich.class, sandwichId);
-		sandwich.setSold(true);
+		//sandwich.setSold(true);
 
 		person.getSandwiches().add(sandwich);
 	}
@@ -40,10 +40,11 @@ public class SellingManager {
 		sandwich = em.find(Sandwich.class, sandwich.getId());
 
 		Sandwich toRemove = null;
-		// lazy loading here (person.getCars)
+		// lazy loading here 
 		for (Sandwich aSandwich : person.getSandwiches())
 			if (aSandwich.getId().compareTo(sandwich.getId()) == 0) {
 				toRemove = aSandwich;
+				//sandwich.setAmount(sandwich.getAmount()-1);
 				break;
 			}
 

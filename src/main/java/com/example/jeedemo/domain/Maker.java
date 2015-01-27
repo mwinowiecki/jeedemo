@@ -11,7 +11,7 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name="maker.all", query="select m from Maker m order by m.id")	
+@NamedQuery(name="maker.all", query="select m from Maker m order by m.id")
 })
 public class Maker implements Serializable{
 	

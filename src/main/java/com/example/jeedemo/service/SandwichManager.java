@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import com.example.jeedemo.domain.Maker;
 import com.example.jeedemo.domain.Sandwich;
 
 @Stateless
@@ -40,5 +41,12 @@ public void updateSandwich(Sandwich sandwich){
 @SuppressWarnings("unchecked")
 public List<Sandwich> getAllSandwiches(){
 	return em.createNamedQuery("sandwich.all").getResultList();
+}
+
+public void assignSandwichToMaker(Long sandwichId, Long makerId){
+	Maker maker = em.find(Maker.class,makerId);
+	Sandwich sandwich = em.find(Sandwich.class,sandwichId);
+	sandwich.setMaker(maker);
+	em.merge(sandwich);
 }
 }

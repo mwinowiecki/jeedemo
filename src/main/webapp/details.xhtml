@@ -7,22 +7,22 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:dataTable value="#{personBean.ownedCars}" var="item">
-				<f:facet name="header">Rented cars</f:facet>
+			<h:dataTable value="#{personBean.boughtSandwiches}" var="item">
+				<f:facet name="header">Bought sandwiches</f:facet>
 				<h:column>
-					<f:facet name="header">Make</f:facet>
-					<h:outputText value="#{item.make}" />
+					<f:facet name="header">Maker</f:facet>
+					<h:outputText value="#{item.maker}" />
 				</h:column>
 
 				<h:column>
-					<f:facet name="header">Model</f:facet>
-					<h:outputText value="#{item.model}" />
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{item.name}" />
 				</h:column>
 
 				<h:column>
 					<f:facet name="header">#{msg.action}</f:facet>
 					<h:commandLink value="#{msg.actionDelete}"
-						action="#{personBean.disposeCar}" />
+						action="#{personBean.disposeSandwich}" />
 				</h:column>
 
 			</h:dataTable>

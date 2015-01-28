@@ -22,10 +22,15 @@ public class SellingManager {
 
 	public void sellSandwich(Long personId, Long sandwichId) {
 
+		int amountLeft;
 		Person person = em.find(Person.class, personId);
 		Sandwich sandwich = em.find(Sandwich.class, sandwichId);
 		//sandwich.setSold(true);
 
+		amountLeft=sandwich.getAmount();
+		
+		sandwich.setAmount(amountLeft-5);
+		em.merge(sandwich);
 		person.getSandwiches().add(sandwich);
 	}
 
@@ -34,7 +39,7 @@ public class SellingManager {
 		return em.createNamedQuery("sandwich.unsold").getResultList();
 	}
 
-	public void disposeSandwich(Person person, Sandwich sandwich) {
+	public void disposeSandwich(Person person, Sandwich sandwich, int amount) {
 
 		person = em.find(Person.class, person.getId());
 		sandwich = em.find(Sandwich.class, sandwich.getId());
@@ -42,9 +47,13 @@ public class SellingManager {
 		Sandwich toRemove = null;
 		// lazy loading here 
 		for (Sandwich aSandwich : person.getSandwiches())
-			if (aSandwich.getId().compareTo(sandwich.getId()) == 0) {
-				toRemove = aSandwich;
-				//sandwich.setAmount(sandwich.getAmount()-1);
+			if (aSandwich.getId().compareTo(sandwich.getId()) == 0 
+				&& (aSandwich.getAmount()>=amount)) {
+				
+				aSandwich.setAmount(aSandwich.getAmount()-amount);
+				if(aSandwich.getAmount()==0)
+					toRemove = aSandwich;
+				//person.setSandwiches(aSandwich);//tu jakos dodac nazwe kanapki do Person
 				break;
 			}
 

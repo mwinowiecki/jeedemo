@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml">
+	
+	<ui:define name="content">
+
+    <h:form id="sandwichform">
+    
+     <h:dataTable value="#{sandwichBean.allSandwiches}" var="item">
+      <f:facet name="header">#{msg.sandwichAllLabel}</f:facet>
+      
+      <h:column>
+      
+        <f:facet name="header">#{msg.sandwichNameLabel}</f:facet>
+            <h:inputText value="#{item.name}" rendered="#{item.editable}" />
+            <h:outputText value="#{item.name}" rendered="#{not item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.sandwichPriceLabel}</f:facet>
+            <h:inputText value="#{item.price}" rendered="#{item.editable}" />
+            <h:outputText value="#{item.price}" rendered="#{not item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.sandwichAmountLabel}</f:facet>
+            <h:inputText value="#{item.amount}" rendered="#{item.editable}" />
+            <h:outputText value="#{item.amount}" rendered="#{not item.editable}" />
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.sandwichMakerLabel}</f:facet>
+            <h:inputText value="#{item.maker}" rendered="#{item.editable}" />
+            <h:outputText value="#{item.maker}" rendered="#{not item.editable}" />
+      </h:column>
+       
+      <h:column>
+        <f:facet name="header">#{msg.sandwichIngredientsLabel}</f:facet>
+				<h:outputText value="#{item.ingredients}" rendered="#{not item.editable}" />   
+      </h:column>
+      
+      <h:column>
+        <f:facet name="header">#{msg.sandwichTypeLabel}</f:facet>					
+			<h:outputText value="#{item.type}" rendered="#{not item.editable}" />
+      </h:column>
+      
+      
+      <h:column>
+        <f:facet name="header">#{msg.sandwichDateOfMakeLabel}</f:facet>
+            <h:outputText value="#{item.dateOfMake}"/>
+      </h:column>
+      
+      
+      <h:column>
+        <f:facet name="header">#{msg.action}</f:facet>
+        <h:commandLink value="#{msg.actionDelete}" action="#{sandwichBean.deleteSandwich}"/>
+      </h:column>
+      
+ </h:dataTable>  
+      </h:form>
+	</ui:define>
+	
+</ui:composition>

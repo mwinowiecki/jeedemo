@@ -10,6 +10,7 @@ import javax.inject.Named;
 import com.example.jeedemo.domain.Person;
 import com.example.jeedemo.domain.Sandwich;
 import com.example.jeedemo.service.PersonManager;
+import com.example.jeedemo.service.SandwichManager;
 import com.example.jeedemo.service.SellingManager;
 
 @SessionScoped
@@ -17,15 +18,20 @@ import com.example.jeedemo.service.SellingManager;
 public class SaleFormBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	private Sandwich sandwich = new Sandwich();
 
 	@Inject
 	private SellingManager sm;
 
 	@Inject
 	private PersonManager pm;
+	
+	@Inject
+	private SandwichManager sandmen;
 
 	private Long sandwichId;
 	private Long personId;
+	private int amount;
 	
 	public Long getSandwichId() {
 		return sandwichId;
@@ -49,7 +55,19 @@ public class SaleFormBean implements Serializable {
 	}
 
 	public String sellSandwich() {
-		sm.sellSandwich(personId, sandwichId);
-		return null;
+		sm.sellSandwich(personId,sandwichId);
+		return "showSandwiches";
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public Sandwich getSandwich() {
+		return sandwich;
+	}
+	public void setSandwich(Sandwich sandwich) {
+		this.sandwich = sandwich;
 	}
 }

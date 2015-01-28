@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.example.jeedemo.service.SandwichManager;
 
-@WebServlet(urlPatterns="view/*")
+@WebServlet(urlPatterns="/view/*")
 public class ViewSandwichServlet extends HttpServlet {
 
 	/**

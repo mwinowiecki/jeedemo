@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="makerForm">
+			<h:panelGrid columns="2">
+			
+					
+				<h:outputText value="Sandwich" />
+				<h:selectOneMenu value="#{assignMakerBean.sandwichId}">
+					<f:selectItems value="#{assignMakerBean.allSandwiches}" var="sandwich"
+						itemValue="#{sandwich.id}" itemLabel="#{sandwich.name}" />
+				</h:selectOneMenu>
+
+				<h:outputText value=" Maker " />
+				<h:selectOneMenu value="#{assignMakerBean.makerId}">
+					<f:selectItems value="#{assignMakerBean.allMakers}" var="maker"
+						itemValue="#{maker.id}" itemLabel="#{maker.name}" />
+				</h:selectOneMenu>
+
+			</h:panelGrid>
+
+			<h:commandButton value="Assign" action="#{assignMakerBean.assignSandwich}" />
+
+			<h:panelGrid>
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

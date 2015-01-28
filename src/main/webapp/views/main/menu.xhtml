@@ -14,15 +14,37 @@
 		<li>
 		  <h:commandLink action="add?faces-redirect=true">
 			<h:outputText value="#{msg.personAddLabel}" />
-		  </h:commandLink></li>
+		  </h:commandLink>
+		</li>
 		<li>
 		  <h:commandLink action="showPersons?faces-redirect=true">
 			 <h:outputText value="#{msg.personAllLabel}" />
 		  </h:commandLink>
 		</li>
 		<li>
-		  <h:commandLink action="sell">
-			 <h:outputText value=" Sell car" />
+		  <h:commandLink action="addSandwich?faces-redirect=true">
+			<h:outputText value="#{msg.sandwichAddLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="showSandwiches?faces-redirect=true">
+			<h:outputText value="#{msg.sandwichAllLabel}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="addMaker?faces-redirect=true">
+			<h:outputText value="#{msg.sandwichMakerAdd}" />
+		  </h:commandLink>
+		</li>
+		<li>
+		  <h:commandLink action="assignMaker?faces-redirect=true">
+			<h:outputText value="#{msg.sandwichAssignMaker}" />
+		  </h:commandLink>
+		</li>
+		
+		<li>
+		  <h:commandLink action="sell?faces-redirect=true">
+			 <h:outputText value=" #{msg.assignSandwichToPerson}" />
 		  </h:commandLink>
 		</li>
 	</ul>

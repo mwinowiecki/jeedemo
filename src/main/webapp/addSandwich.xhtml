@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/templates/default.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:form id="sandwichForm">
+			<h:panelGrid columns="2">
+
+				<h:outputText value="#{msg.sandwichNameLabel}" />
+				<h:inputText id="sandwichName" value="#{sandwichBean.sandwich.name}"
+					required="#{true}" />
+
+				<h:outputText value="#{msg.sandwichPriceLabel}" />
+				<h:inputText id="price" value="#{sandwichBean.sandwich.price}" />
+				
+				<h:outputText value="#{msg.sandwichAmountLabel}" />
+				<h:inputText id="amount" value="#{sandwichBean.sandwich.amount}" />
+				 
+				<h:outputText value="#{msg.sandwichTypeLabel}" />
+				<h:selectOneRadio id="type" value="#{sandwichBean.sandwich.type}">
+					<f:selectItem id="type1" itemLabel="Normal" itemValue="Normal" />
+					<f:selectItem id="type2" itemLabel="Vege" itemValue="Vege" />
+					
+				</h:selectOneRadio>
+				
+				<h:outputText value="#{msg.sandwichIngredientsLabel}" />
+				<h:selectManyCheckbox id="ingredients" value="#{sandwichBean.sandwich.ingredients}">
+       				<f:selectItem id="ham" itemLabel="ham" itemValue="ham" />
+					<f:selectItem id="cheesse" itemLabel="cheesse" itemValue="cheesse" />
+					<f:selectItem id="salad" itemLabel="salad" itemValue="salad" />
+					<f:selectItem id="egg" itemLabel="egg" itemValue="egg" />
+				</h:selectManyCheckbox>
+				
+				<h:outputText value="#{msg.sandwichMakeDateLabel}" />
+				<rich:calendar value="#{sandwichBean.sandwich.dateOfMake}"
+					id="calendar" datePattern="dd.MM.yyyy" showApplyButton="#{true}"
+					cellWidth="24px" cellHeight="22px" style="width:200px">
+					<a4j:ajax render="messages" execute="@this" />
+				</rich:calendar>
+				
+			</h:panelGrid>
+
+			<h:commandButton value="#{msg.sandwichFormOKButton}"
+				action="#{sandwichBean.addSandwich}" />
+
+			<h:panelGrid>
+				<h:messages for="" />
+				<h:messages id="messages" showDetail="#{true}"
+					showSummary="#{false}" />
+			</h:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>

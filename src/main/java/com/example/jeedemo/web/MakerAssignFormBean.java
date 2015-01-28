@@ -56,8 +56,8 @@ public class MakerAssignFormBean implements Serializable{
 	}
 	
 	public String assignSandwich(){
-		makeasman.assignSandwich(makerId, sandwichId);
-		return "assignMaker";
+		makeasman.assignSandwich(sandwichId,makerId);
+		return "showSandwiches";
 	}
 	
 	public List<Maker> getAllMakers(){

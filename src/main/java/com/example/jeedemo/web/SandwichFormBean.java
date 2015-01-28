@@ -30,6 +30,7 @@ public class SandwichFormBean implements Serializable{
 	private long sandwichId;
 	private long makerId;
 	private long boughtById;
+	private int amount;
 	
 	@Inject
 	private SandwichManager sandmen;
@@ -99,6 +100,12 @@ public class SandwichFormBean implements Serializable{
 		return "assignMaker";
 	}
 	
+	public String sellSandwich(){
+		sandmen.setAmountSandwich(sandwich);
+		
+		return "showSandwiches";
+	}
+	
 	public String deleteSandwich(){
 		Sandwich sandwichToDelete = sandwiches.getRowData();
 		sandmen.deleteSandwich(sandwichToDelete);
@@ -110,14 +117,14 @@ public class SandwichFormBean implements Serializable{
 		return "details";
 	}
 	
-	public String saveAction(){
-		Sandwich sandwichToUpdate = sandwiches.getRowData();
-		sandmen.updateSandwich(sandwichToUpdate);
-		for(Sandwich sandwich : sandwiches){
-			sandwich.setEditable(false);
-		}
-		return null;
-	}
+//	public String saveAction(){
+//		Sandwich sandwichToUpdate = sandwiches.getRowData();
+//		sandmen.updateSandwich(sandwichToUpdate);
+//		for(Sandwich sandwich : sandwiches){
+//			sandwich.setEditable(false);
+//		}
+//		return null;
+//	}
 	
 	public String editAction(){
 		Sandwich toEdit = sandwiches.getRowData();
@@ -128,6 +135,13 @@ public class SandwichFormBean implements Serializable{
 	public List<Maker> getAllMakers(){
 		return makemen.getMakers();
 	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
 	
 	
 

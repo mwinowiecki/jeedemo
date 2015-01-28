@@ -24,7 +24,7 @@ public class PersonFormBean implements Serializable {
 	private Person personToShow = new Person();
 	private ListDataModel<Sandwich> boughtSandwiches = new ListDataModel<Sandwich>();
 
-
+	private int Amount=0;
 	@Inject
 	private PersonManager pm;
 	
@@ -67,8 +67,14 @@ public class PersonFormBean implements Serializable {
 	}
 	
 	public String disposeSandwich(){
-		Sandwich carToDispose = boughtSandwiches.getRowData();
-		sm.disposeSandwich(personToShow, carToDispose);
+		Sandwich sandwichToDispose = boughtSandwiches.getRowData();
+		sm.disposeSandwich(personToShow, sandwichToDispose,Amount);
 		return null;
+	}
+	public int getAmount() {
+		return Amount;
+	}
+	public void setAmount(int amount) {
+		Amount = amount;
 	}
 }

@@ -28,15 +28,23 @@ public void deleteSandwich(Sandwich sandwich){
 	em.remove(sandwich);
 }
 
-public void updateSandwich(Sandwich sandwich){
-	sandwich = em.find(Sandwich.class,sandwich.getId());
-	sandwich.setName(sandwich.getName());
-	sandwich.setPrice(sandwich.getPrice());
-	sandwich.setDateOfMake(sandwich.getDateOfMake());
-	sandwich.setIngredients(sandwich.getIngredients());
-	sandwich.setMaker(sandwich.getMaker());
+public void setAmountSandwich(Sandwich sandwich){
+	int amountLeft;
+	
+	amountLeft=sandwich.getAmount();
+	
 	em.merge(sandwich);
 }
+
+//public void updateSandwich(Sandwich sandwich){
+//	sandwich = em.find(Sandwich.class,sandwich.getId());
+//	sandwich.setName(sandwich.getName());
+//	sandwich.setPrice(sandwich.getPrice());
+//	sandwich.setDateOfMake(sandwich.getDateOfMake());
+//	sandwich.setIngredients(sandwich.getIngredients());
+//	sandwich.setMaker(sandwich.getMaker());
+//	em.merge(sandwich);
+//}
 
 @SuppressWarnings("unchecked")
 public List<Sandwich> getAllSandwiches(){

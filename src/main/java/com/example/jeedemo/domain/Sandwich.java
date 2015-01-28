@@ -2,6 +2,7 @@ package com.example.jeedemo.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,9 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Past;
 
 @Entity
 @NamedQueries({
@@ -29,6 +32,7 @@ public class Sandwich {
 	private String name;
 	
 	private float price = 0;
+	private String type;
 	private boolean sold = false;
 	private int amount = 0;
 	
@@ -37,12 +41,11 @@ public class Sandwich {
 	private boolean editable = false;
 	
 	@Temporal(TemporalType.DATE)
+	@Past
 	private Date dateOfMake = new Date();
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	private Maker maker;
-	
-	
 	
 	public Long getId() {//
 		return id;
@@ -95,12 +98,18 @@ public class Sandwich {
 		this.amount = amount;
 	}
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+//	@OneToMany(fetch = FetchType.EAGER)
 	public Maker getMaker() {//
 		return maker;
 	}
 	public void setMaker(Maker maker) {//
 		this.maker = maker;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

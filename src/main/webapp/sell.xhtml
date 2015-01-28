@@ -17,16 +17,26 @@
 						itemValue="#{person.id}" itemLabel="#{person.firstName}" />
 				</h:selectOneMenu>
 
-				<h:outputText value=" Car" />
-				<h:selectOneMenu value="#{saleBean.carId}">
-					<f:selectItems value="#{saleBean.availableCars}" var="car"
-						itemValue="#{car.id}" itemLabel="#{car.make} #{car.model}" />
+				<h:outputText value="Sandwich" />
+				<h:selectOneMenu value="#{saleBean.sandwichId}">
+					<f:selectItems value="#{saleBean.availableSandwiches}" var="sandwich"
+						itemValue="#{sandwich.id}" itemLabel="#{sandwich.name} #{sandwich.price}" />
 				</h:selectOneMenu>
+			
+				
+				<!-- <h:outputText value="#{msg.sandwichAmountLabel}" />
+				<h:inputText id="amount" value="#{sandwichBean.sandwich.amount}" itemValue="#{sandwichBean.sandwich.amount}"
+					required="#{true}" /> -->
+					
+									
+				<h:outputText value="#{msg.sandwichAmountLabel}" />
+				<h:inputText id="amount" value="#{sandwichBean.sandwich.amount}" />
 
 
 			</h:panelGrid>
 
-			<h:commandButton value="Sell" action="#{saleBean.sellCar}" />
+			<h:commandButton value="SELL!" action="#{saleBean.sellSandwich}" />
+			
 
 			<h:panelGrid>
 				<h:messages id="messages" showDetail="#{true}"
